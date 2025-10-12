@@ -20,11 +20,11 @@ def is_key_pressed(key):
 # Return True if a key is being held down
 def is_key_held(keys):
     if keys[pygame.K_z]:
-        print("Holding Z")
+        print("Holding z")
     if keys[pygame.K_x]:
-        print("Holding X")
+        print("Holding x")
     if keys[pygame.K_c]:
-        print("Holding C")
+        print("Holding c")
     return False    
 
 # Get the current position of the scroll knob

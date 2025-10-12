@@ -1,5 +1,10 @@
+from time import time
 import pygame
+import os
 import input_handler
+import music_player
+import metronome
+import threading
 
 # Initialize pygame
 pygame.init()
@@ -21,6 +26,16 @@ key_map = {
 }
 
 
+
+base_path = os.path.dirname(__file__)
+song_path = os.path.join(base_path, "mp3_storage", "testSong1.mp3")
+player = music_player.MusicPlayer(song_path)
+player.play()
+
+metronome_instance = metronome.Metronome(160, 4)
+metronome_thread = threading.Thread(target=metronome_instance.start, daemon=True)
+metronome_thread.start()
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -28,8 +43,11 @@ while running:
 
         elif event.type == pygame.KEYDOWN:
             key_str = key_map.get(event.key)
-            
-            input_handler.is_key_pressed(key_str)
+            print(f"Current position: {player.get_position():.3f} seconds", end='\r')
+
+            if key_str:
+                input_handler.is_key_pressed(key_str)
+                
 
     keys = pygame.key.get_pressed()
     input_handler.is_key_held(keys)
