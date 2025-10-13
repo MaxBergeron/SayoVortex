@@ -3,6 +3,7 @@ import threading
 import pygame
 
 class Metronome:
+
     def __init__(self, bpm, beats_per_bar):
         self.bpm = bpm
         self.beats_per_bar = beats_per_bar
@@ -21,6 +22,7 @@ class Metronome:
         while self.running:
             beat = (beat + 1) % self.beats_per_bar
             print(f"Beat {beat + 1}")
+
             # Play sound here if desired
             time.sleep(interval)
 

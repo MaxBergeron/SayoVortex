@@ -3,6 +3,7 @@ import time
 import threading
 
 class MusicPlayer:
+
     def __init__(self, mp3_path):
         pygame.mixer.init()
         self.mp3_path = mp3_path
@@ -46,16 +47,3 @@ class MusicPlayer:
 
     def get_length(self):
         return self.length
-
-# Example usage:
-if __name__ == "__main__":
-    mp3_file = "C:\\Users\\Maxence Bergeron\\Downloads\\SayoVortex_v1\\mp3_storage\\testSong1.mp3"  # Replace with your mp3 file path
-    player = MusicPlayer(mp3_file)
-    player.play()
-    try:
-        while player.get_position() < player.get_length():
-            print(f"Current position: {player.get_position():.2f} seconds", end='\r')
-            time.sleep(0.1)
-    except KeyboardInterrupt:
-        player.stop()
-        print("\nStopped.")
