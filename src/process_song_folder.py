@@ -1,5 +1,3 @@
-from importlib.resources import path
-
 from src.game_objects import HitObject, LaserObject
 
 
@@ -7,6 +5,26 @@ class SongProcessor:
     
     def parse_sayovortex_file(self, path):
         data = {}
+
+        class HitObjectWrapper:
+            def __init__(self, *args):
+                # parts come from CSV: key, duration, time
+                self.config = int(args[0]) if len(args) > 0 and args[0] != '' else None
+                self.duration = float(args[1]) if len(args) > 1 and args[1] != '' else None
+                self.position = float(args[2]) if len(args) > 2 and args[2] != '' else None
+
+            def __repr__(self):
+                return f"HitObjectWrapper(config={self.config}, duration={self.duration}, position={self.position})"
+
+        class LaserObjectWrapper:
+            def __init__(self, *args):
+                self.chain = bool(int(args[0])) if len(args) > 0 and args[0] != '' else None
+                self.position = int(args[1]) if len(args) > 1 and args[1] != '' else None
+                self.start = float(args[2]) if len(args) > 2 and args[2] != '' else None
+
+            def __repr__(self):
+                return f"LaserObjectWrapper(chain={self.chain}, start={self.start}, position={self.position})"
+
         current_section = None
         with open(path, 'r', encoding='utf-8') as f:
             for line in f:
@@ -39,9 +57,10 @@ class SongProcessor:
                         data[current_section] = []
                     parts = [p.strip() for p in line.split(",")]
                     if current_section == "HitObjects":
-                        obj = HitObject(*parts)
+                        # create wrapper objects so callers can use dot-notation
+                        obj = HitObjectWrapper(*parts)
                     elif current_section == "LaserObjects":
-                        obj = LaserObject(*parts)
+                        obj = LaserObjectWrapper(*parts)
                     else:
                         obj = tuple(parts)
                     data[current_section].append(obj)

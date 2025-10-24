@@ -13,7 +13,20 @@ Version: Easy
 // Hit Object Ordering
 // 3-key configuration (1-7), hold duration, time position, 
 [HitObjects]
+1, 0, 500
+3, 250, 750
+2, 0, 1000
+1, 400, 1400
+3, 0, 1800
+2, 200, 2100
+1, 600, 2700
 
 // Laser Object Ordering
 // continue chain (0 false 1 true), start position, time position
 [LaserObjects]
+1, 1, 800
+1, 200, 1200
+0, 100, 2000
+1, 1, 2300
+1, 400, 2600
+0, 1, 3000
