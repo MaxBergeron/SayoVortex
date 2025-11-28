@@ -39,25 +39,8 @@ class AssignMapValues:
         if self.hit_objects:
             print(f"First hit object position: {self.hit_objects[0].position}")
         if self.laser_objects:
-            print(f"First laser object: {self._format_obj(self.laser_objects[0])}")
+            print(f"First laser object position: {self.laser_objects[0].poition}")
 
-    def _format_obj(self, obj: Any) -> str:
-        """Return a readable string for common object types.
-
-        Handles dicts, (list/tuple), and CSV-like strings often used in
-        map file formats. Falls back to repr(obj).
-        """
-        if isinstance(obj, dict):
-            return ", ".join(f"{k}={v!r}" for k, v in obj.items())
-        if isinstance(obj, (list, tuple)):
-            return ", ".join(repr(x) for x in obj)
-        if isinstance(obj, str):
-            # If it's a comma-separated string, split for readability
-            if "," in obj:
-                parts = [p.strip() for p in obj.split(",")]
-                return ", ".join(parts)
-            return obj
-        return repr(obj)
 
     def __repr__(self) -> str:
         return (
