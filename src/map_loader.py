@@ -39,7 +39,7 @@ class AssignMapValues:
         if self.hit_objects:
             print(f"First hit object position: {self.hit_objects[0].position}")
         if self.laser_objects:
-            print(f"First laser object position: {self.laser_objects[0].poition}")
+            print(f"First laser object position: {self.laser_objects[0].position}")
 
 
     def __repr__(self) -> str:
