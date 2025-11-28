@@ -5,11 +5,7 @@ from src import process_song_folder
 from src import input_handler
 from src import music_player
 from src import metronome
-<<<<<<< HEAD
 from src import assign_map_values
-=======
-from src import map_loader
->>>>>>> 6783af91bcc11698b3188dfcfa8b93ba8d23d4dc
 import threading
 
 def main():
@@ -34,13 +30,9 @@ def main():
 
     # Use repository root as base so data folders at project root are found
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-<<<<<<< HEAD
     song_data_folder = process_song_folder.SongProcessor().parse_sayovortex_file(os.path.join(base_path, "data", "song_folder", "SongFolder1", "testSong1.txt"))
     # create map
     assign_map_values(song_data_folder)
-=======
-    song_data_folder = process_song_folder.SongProcessor().parse_sayovortex_file(os.path.join(base_path, "data", "song_folder", "SongFolder2", "testSong1.txt"))
->>>>>>> 6783af91bcc11698b3188dfcfa8b93ba8d23d4dc
     song_path = song_data_folder["General"].get("AudioFilename")
     song_lead_in = song_data_folder["General"].get("AudioLeadIn")
     song_title = song_data_folder["Metadata"].get("Title")

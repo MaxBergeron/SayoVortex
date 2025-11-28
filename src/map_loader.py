@@ -10,9 +10,9 @@ from typing import Any, Dict, List
 
 class AssignMapValues:
     """Parse and hold map metadata from a song_data_folder dict."""
-    def __init__(self, song_data_folder: dict):
-        gen = song_data_folder.get("General", {})
-        meta = song_data_folder.get("Metadata", {})
+    def __init__(self, song_data_folder: Dict[str, Any]):
+        gen = song_data_folder.get("General", {}) or {}
+        meta = song_data_folder.get("Metadata", {}) or {}
 
         self.song_path = gen.get("AudioFilename", "")
         # convert lead-in to int with safe fallback
@@ -64,9 +64,3 @@ class AssignMapValues:
             f"AssignMapValues(title={self.song_title!r}, artist={self.song_artist!r}, "
             f"creator={self.song_creator!r}, version={self.song_version!r})"
         )
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 6783af91bcc11698b3188dfcfa8b93ba8d23d4dc
